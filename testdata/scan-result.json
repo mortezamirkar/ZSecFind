@@ -1,0 +1,387 @@
+{
+  "meta": {
+    "tool": "findsomething",
+    "version": "1.0.0",
+    "scanned_at": "2026-06-22T09:50:57Z"
+  },
+  "summary": {
+    "files_scanned": 4,
+    "files_with_findings": 4,
+    "total_findings": 54,
+    "has_sensitive": true,
+    "by_category": {
+      "domain": 4,
+      "incomplete_path": 2,
+      "ip_port": 2,
+      "path": 5,
+      "secret": 37,
+      "url": 4
+    }
+  },
+  "findings": {
+    "secret": [
+      {
+        "value": "API-Key\": \"APIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "APIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "admin_pass: \"admin123!",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "api_secret: \"sk_test_4eC39HqLyjWDarjtT1zdp7dc",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "user_pwd: \"welcome2024",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "AKIAIOSFODNN7EXAMPLE",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "Basic YWRtaW46c3VwZXJzZWNyZXQxMjM=",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJleHAiOjk5OTk5OTk5OTl9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "SERVICE_TOKEN = \"Bearer",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "api_key: \"AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "api_key: \"SG",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "api_key: \"dd000000000000000000000000000000",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "aws_access_key_id: \"AKIAIOSFODNN7EXAMPLE",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "aws_secret_access_key: \"wJalrXUtnFEMI",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "datadog_api_key: \"dd000000000000000000000000000000",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "github_token: \"ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "gitlab_token: \"glpat-xxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "glpat-xxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "google_maps_api_key: \"AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "https://hooks.slack.com/services/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",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "jwtSecret: \"super-secret-jwt-key-change-me-in-prod",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "password: \"P",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "password: \"P@ssw0rd!2024#prod",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "sendgrid_api_key: \"SG",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "stripe_private: \"sk_live_51Hxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "-----BEGIN RSA PRIVATE KEY-----",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "account_key: \"abc123def456",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "api_key: \"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "auth_token: \"npm_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "docker_password: \"registry_pass_2024",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "npm_auth_token: \"npm_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "password: \"registry_pass_2024",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "token=export_token_abc123xyz",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "twilio_api_key: \"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "zopim_account_key: \"abc123def456",
+        "file": "testdata\\vulnerable-app\\assets\\js\\dashboard.js"
+      },
+      {
+        "value": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+        "file": "testdata\\vulnerable-app\\index.html"
+      }
+    ],
+    "ip_port": [
+      {
+        "value": "http://203.0.113.77:9000/legacy-api",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "http://10.0.42.15:8080/api",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      }
+    ],
+    "domain": [
+      {
+        "value": "//cdn.acme-shop.io",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "https://api.acme-shop.io",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "https://hooks.slack.com",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "https://hooks.slack.com",
+        "file": "testdata\\vulnerable-app\\index.html"
+      }
+    ],
+    "url": [
+      {
+        "value": "//cdn.acme-shop.io/static/admin-backup.zip",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "https://api.acme-shop.io",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "https://hooks.slack.com/services/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",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      },
+      {
+        "value": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+        "file": "testdata\\vulnerable-app\\index.html"
+      }
+    ],
+    "path": [
+      {
+        "value": "/orders",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "/stats",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "/users",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "/orders",
+        "file": "testdata\\vulnerable-app\\index.html"
+      },
+      {
+        "value": "/products",
+        "file": "testdata\\vulnerable-app\\index.html"
+      }
+    ],
+    "incomplete_path": [
+      {
+        "value": "application/json",
+        "file": "testdata\\vulnerable-app\\assets\\js\\api-client.js"
+      },
+      {
+        "value": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+        "file": "testdata\\vulnerable-app\\assets\\js\\config.js"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "testdata\\vulnerable-app\\assets\\js\\api-client.js",
+      "total": 12,
+      "by_category": {
+        "domain": 1,
+        "incomplete_path": 1,
+        "ip_port": 1,
+        "path": 3,
+        "secret": 5,
+        "url": 1
+      },
+      "findings": {
+        "domain": [
+          "//cdn.acme-shop.io"
+        ],
+        "incomplete_path": [
+          "application/json"
+        ],
+        "ip_port": [
+          "http://203.0.113.77:9000/legacy-api"
+        ],
+        "path": [
+          "/orders",
+          "/stats",
+          "/users"
+        ],
+        "secret": [
+          "API-Key\": \"APIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "APIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "admin_pass: \"admin123!",
+          "api_secret: \"sk_test_4eC39HqLyjWDarjtT1zdp7dc",
+          "user_pwd: \"welcome2024"
+        ],
+        "url": [
+          "//cdn.acme-shop.io/static/admin-backup.zip"
+        ]
+      }
+    },
+    {
+      "path": "testdata\\vulnerable-app\\assets\\js\\config.js",
+      "total": 27,
+      "by_category": {
+        "domain": 2,
+        "incomplete_path": 1,
+        "ip_port": 1,
+        "secret": 21,
+        "url": 2
+      },
+      "findings": {
+        "domain": [
+          "https://api.acme-shop.io",
+          "https://hooks.slack.com"
+        ],
+        "incomplete_path": [
+          "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+        ],
+        "ip_port": [
+          "http://10.0.42.15:8080/api"
+        ],
+        "secret": [
+          "AKIAIOSFODNN7EXAMPLE",
+          "Basic YWRtaW46c3VwZXJzZWNyZXQxMjM=",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJleHAiOjk5OTk5OTk5OTl9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+          "SERVICE_TOKEN = \"Bearer",
+          "api_key: \"AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "api_key: \"SG",
+          "api_key: \"dd000000000000000000000000000000",
+          "aws_access_key_id: \"AKIAIOSFODNN7EXAMPLE",
+          "aws_secret_access_key: \"wJalrXUtnFEMI",
+          "datadog_api_key: \"dd000000000000000000000000000000",
+          "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "github_token: \"ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "gitlab_token: \"glpat-xxxxxxxxxxxxxxxxxxxx",
+          "glpat-xxxxxxxxxxxxxxxxxxxx",
+          "google_maps_api_key: \"AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "https://hooks.slack.com/services/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",
+          "jwtSecret: \"super-secret-jwt-key-change-me-in-prod",
+          "password: \"P",
+          "password: \"P@ssw0rd!2024#prod",
+          "sendgrid_api_key: \"SG",
+          "stripe_private: \"sk_live_51Hxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "url": [
+          "https://api.acme-shop.io",
+          "https://hooks.slack.com/services/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"
+        ]
+      }
+    },
+    {
+      "path": "testdata\\vulnerable-app\\assets\\js\\dashboard.js",
+      "total": 10,
+      "by_category": {
+        "secret": 10
+      },
+      "findings": {
+        "secret": [
+          "-----BEGIN RSA PRIVATE KEY-----",
+          "account_key: \"abc123def456",
+          "api_key: \"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "auth_token: \"npm_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "docker_password: \"registry_pass_2024",
+          "npm_auth_token: \"npm_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "password: \"registry_pass_2024",
+          "token=export_token_abc123xyz",
+          "twilio_api_key: \"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "zopim_account_key: \"abc123def456"
+        ]
+      }
+    },
+    {
+      "path": "testdata\\vulnerable-app\\index.html",
+      "total": 5,
+      "by_category": {
+        "domain": 1,
+        "path": 2,
+        "secret": 1,
+        "url": 1
+      },
+      "findings": {
+        "domain": [
+          "https://hooks.slack.com"
+        ],
+        "path": [
+          "/orders",
+          "/products"
+        ],
+        "secret": [
+          "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+        ],
+        "url": [
+          "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+        ]
+      }
+    }
+  ]
+}

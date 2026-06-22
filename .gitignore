@@ -1,0 +1,18 @@
+# Binaries (root only — do not match cmd/findsomething/)
+/findsomething
+/findsomething.exe
+# Build output (use GitHub Releases for binaries)
+/dist/
+
+# Go
+/vendor/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Test artifacts (optional local runs)
+# testdata/scan-result.json
