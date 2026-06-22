@@ -229,6 +229,34 @@ go build ./cmd/findsomething
 
 ---
 
+## Publish to GitHub
+
+After creating a **public** repository, push and tag:
+
+```bash
+git remote add origin https://github.com/YOUR_USER/FindSomething.git
+git branch -M main
+git push -u origin main
+git push origin v1.0.0
+```
+
+**Important:** `go install ...@latest` only works when `go.mod` matches the repo URL:
+
+```bash
+# go.mod first line must be:
+module github.com/YOUR_USER/FindSomething
+```
+
+Then users can install:
+
+```bash
+go install github.com/YOUR_USER/FindSomething/cmd/findsomething@latest
+```
+
+Update this path in `README.md` after you create the repo.
+
+---
+
 ## License
 
 See [LICENSE](LICENSE).
