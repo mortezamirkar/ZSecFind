@@ -72,6 +72,16 @@ cat page.html | zsecfind
 **813+** secret regex rules plus category matchers (IP, domain, JWT, mail, …).  
 Files live under `patterns/` — see `patterns/README.md`.
 
+## What this project merges
+
+ZSecFind is a consolidation of ideas and pattern sets commonly used for leak detection. In practice, it merges:
+
+- **FindSomething**: the original browser-extension regex approach (web-focused patterns for JS/HTML, plus categories like domains/IPs/URLs/JWTs).
+- **TruffleHog** (curated patterns): a small set of high-signal vendor token formats used as a curated layer.
+- **Gitleaks** (rule coverage): rule ideas and samples used to identify missing high-value web/SaaS token formats, then ported into `patterns/` as regex lines.
+
+This repository does not embed or run those tools directly; it embeds the resulting pattern files and runs them as a standalone Go CLI scanner.
+
 ## JSON report
 
 ```json
