@@ -1,6 +1,8 @@
 # Binaries (root only — do not match cmd/*/)
 /zsecfind
 /zsecfind.exe
+/jsleakfind
+/jsleakfind.exe
 # Build output (use GitHub Releases for binaries)
 /dist/
 
