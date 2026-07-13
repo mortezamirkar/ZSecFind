@@ -5,12 +5,21 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"runtime"
+	"sort"
 	"strings"
+	"sync"
 
-	"github.com/findsomething/findsomething-cli/internal/crawler"
-	"github.com/findsomething/findsomething-cli/internal/extractor"
-	"github.com/findsomething/findsomething-cli/internal/model"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/crawler"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/extractor"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/model"
 )
+
+// ScanOptions configures directory scanning.
+type ScanOptions struct {
+	Workers    int
+	Extensions []string
+}
 
 // ScanFile reads a local file and extracts findings.
 func ScanFile(path string) (*model.ScanResult, error) {
@@ -25,7 +34,8 @@ func ScanFile(path string) (*model.ScanResult, error) {
 }
 
 // ScanDir walks a directory and scans text-like files.
-func ScanDir(root string, extensions []string) ([]*model.ScanResult, error) {
+func ScanDir(root string, opts ScanOptions) ([]*model.ScanResult, error) {
+	extensions := opts.Extensions
 	if len(extensions) == 0 {
 		extensions = []string{".html", ".htm", ".js", ".jsx", ".ts", ".tsx", ".vue", ".json", ".xml", ".txt", ".env", ".yaml", ".yml", ".php", ".jsp", ".asp", ".aspx", ".cs", ".java", ".py", ".rb", ".go", ".css", ".md"}
 	}
@@ -34,14 +44,14 @@ func ScanDir(root string, extensions []string) ([]*model.ScanResult, error) {
 		extSet[strings.ToLower(e)] = true
 	}
 
-	var results []*model.ScanResult
+	var paths []string
 	err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
 		if d.IsDir() {
 			base := filepath.Base(path)
-			if base == ".git" || base == "node_modules" || base == "vendor" {
+			if base == ".git" || base == "node_modules" || base == "vendor" || base == "third_party" || base == "dist" {
 				return filepath.SkipDir
 			}
 			return nil
@@ -50,16 +60,61 @@ func ScanDir(root string, extensions []string) ([]*model.ScanResult, error) {
 		if !extSet[ext] {
 			return nil
 		}
-		r, err := ScanFile(path)
-		if err != nil {
-			return nil
-		}
-		if r.TotalFindings() > 0 {
-			results = append(results, r)
-		}
+		paths = append(paths, path)
 		return nil
 	})
-	return results, err
+	if err != nil {
+		return nil, err
+	}
+	if len(paths) == 0 {
+		return nil, nil
+	}
+
+	workers := opts.Workers
+	if workers <= 0 {
+		workers = runtime.NumCPU()
+	}
+	if workers > len(paths) {
+		workers = len(paths)
+	}
+
+	jobs := make(chan string)
+	results := make(chan *model.ScanResult, workers)
+	var wg sync.WaitGroup
+
+	for i := 0; i < workers; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for path := range jobs {
+				r, scanErr := ScanFile(path)
+				if scanErr != nil {
+					continue
+				}
+				if r.TotalFindings() > 0 {
+					results <- r
+				}
+			}
+		}()
+	}
+
+	go func() {
+		for _, path := range paths {
+			jobs <- path
+		}
+		close(jobs)
+		wg.Wait()
+		close(results)
+	}()
+
+	var out []*model.ScanResult
+	for r := range results {
+		out = append(out, r)
+	}
+	sort.Slice(out, func(i, j int) bool {
+		return out[i].Target < out[j].Target
+	})
+	return out, nil
 }
 
 // ScanURL wraps crawler with context.

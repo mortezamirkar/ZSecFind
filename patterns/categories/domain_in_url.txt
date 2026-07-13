@@ -1,0 +1,2 @@
+# Domain inside URL strings (uses {{TLD}} from shared/tld.txt)
+['"](([a-zA-Z0-9]+:)?//)?[a-zA-Z0-9\-\.]*?\.({{TLD}})(:\d{1,5})?

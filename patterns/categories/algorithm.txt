@@ -1,0 +1,2 @@
+# Crypto / encoding function usage
+\W(Base64\.encode|Base64\.decode|btoa|atob|CryptoJS\.AES|CryptoJS\.DES|JSEncrypt|rsa|KJUR|\$\.md5|md5|sha1|sha256|sha512)[\(\.]

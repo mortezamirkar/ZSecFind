@@ -1,3 +1,3 @@
-module github.com/findsomething/findsomething-cli
+module github.com/l4tr0d3ctism/ZSecFind
 
 go 1.22

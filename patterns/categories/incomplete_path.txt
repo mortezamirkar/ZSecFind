@@ -1,0 +1,2 @@
+# Incomplete / relative paths
+['"][^/>< \)(\{\},'"\\][\w/]*?/[\w/]*?['"]

@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/findsomething/findsomething-cli/internal/model"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/model"
 )
 
 // Format is the output serialization type.
@@ -70,10 +70,22 @@ func printSection(w io.Writer, title string, items []model.Finding) {
 	}
 	fmt.Fprintf(w, "\n[%s] (%d)\n", title, len(items))
 	for _, f := range items {
+		loc := ""
+		if f.StartLine > 0 {
+			loc = fmt.Sprintf(":%d", f.StartLine)
+			if f.StartCol > 0 {
+				loc = fmt.Sprintf(":%d:%d", f.StartLine, f.StartCol)
+			}
+		}
+		rule := ""
+		if f.RuleID != "" {
+			rule = fmt.Sprintf(" [%s]", f.RuleID)
+		}
 		if f.Source != "" {
-			fmt.Fprintf(w, "  %s  (source: %s)\n", f.Value, f.Source)
+			fmt.Fprintf(w, "  %s%s%s", f.Value, rule, loc)
+			fmt.Fprintf(w, "  (%s)\n", f.Source)
 		} else {
-			fmt.Fprintf(w, "  %s\n", f.Value)
+			fmt.Fprintf(w, "  %s%s%s\n", f.Value, rule, loc)
 		}
 	}
 }

@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
-# Build findsomething for Linux and Windows (amd64)
+# Build zsecfind for Linux and Windows (amd64)
 set -euo pipefail
 cd "$(dirname "$0")"
-
-echo "Extracting patterns..."
-go run ./scripts/extract_patterns
 
 mkdir -p dist
 
 echo "Building Linux amd64..."
-GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/findsomething-linux-amd64 ./cmd/findsomething
+GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/zsecfind-linux-amd64 .
 
 echo "Building Windows amd64..."
-GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o dist/findsomething-windows-amd64.exe ./cmd/findsomething
+GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o dist/zsecfind-windows-amd64.exe .
 
 echo ""
 echo "Done:"

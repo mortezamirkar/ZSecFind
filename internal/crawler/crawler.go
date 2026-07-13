@@ -11,8 +11,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/findsomething/findsomething-cli/internal/extractor"
-	"github.com/findsomething/findsomething-cli/internal/model"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/extractor"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/model"
 )
 
 // Options controls HTTP crawling behavior.
@@ -25,8 +25,8 @@ type Options struct {
 }
 
 var (
-	reHref = regexp.MustCompile(`href=['"](.*?)['"]`)
-	reSrc  = regexp.MustCompile(`src=['"](.*?)['"]`)
+	reHref      = regexp.MustCompile(`href=['"](.*?)['"]`)
+	reSrc       = regexp.MustCompile(`src=['"](.*?)['"]`)
 	reScriptSrc = regexp.MustCompile(`<script [^><]*?src=['"](.*?)['"]`)
 )
 
@@ -39,7 +39,7 @@ func ScanURL(ctx context.Context, rawURL string, opts Options) (*model.ScanResul
 		opts.Concurrency = 8
 	}
 	if opts.UserAgent == "" {
-		opts.UserAgent = "FindSomething-CLI/1.0 (DevSecOps)"
+		opts.UserAgent = "Jsleakfind-CLI/1.0 (DevSecOps)"
 	}
 
 	parsed, err := url.Parse(rawURL)
@@ -103,7 +103,7 @@ func ScanURLBody(ctx context.Context, rawURL string, opts Options) (*model.ScanR
 		opts.Timeout = 15 * time.Second
 	}
 	if opts.UserAgent == "" {
-		opts.UserAgent = "FindSomething-CLI/1.0 (DevSecOps)"
+		opts.UserAgent = "Jsleakfind-CLI/1.0 (DevSecOps)"
 	}
 	client := &http.Client{Timeout: opts.Timeout}
 	body, err := fetch(ctx, client, rawURL, opts.UserAgent)

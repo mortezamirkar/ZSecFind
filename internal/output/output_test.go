@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/findsomething/findsomething-cli/internal/extractor"
-	"github.com/findsomething/findsomething-cli/internal/model"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/extractor"
+	"github.com/l4tr0d3ctism/ZSecFind/internal/model"
 )
 
 func TestJSONReportStructure(t *testing.T) {
@@ -31,7 +31,7 @@ func TestJSONReportStructure(t *testing.T) {
 		t.Fatalf("invalid json: %v\n%s", err, buf.String())
 	}
 
-	if report.Meta.Tool != "findsomething" {
+	if report.Meta.Tool != "zsecfind" {
 		t.Errorf("meta.tool = %q", report.Meta.Tool)
 	}
 	if report.Summary.FilesScanned != 1 {
@@ -42,6 +42,13 @@ func TestJSONReportStructure(t *testing.T) {
 	}
 	if len(report.Findings.Secret) == 0 {
 		t.Error("expected secret findings grouped")
+	}
+	f := report.Findings.Secret[0]
+	if f.StartLine == 0 {
+		t.Error("expected start_line in json finding")
+	}
+	if f.RuleID == "" {
+		t.Error("expected rule_id in json finding")
 	}
 	if len(report.Files) != 1 || report.Files[0].Total == 0 {
 		t.Error("expected per-file breakdown")

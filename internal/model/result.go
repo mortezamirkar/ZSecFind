@@ -7,8 +7,14 @@ import (
 
 // Finding ties a value to its source location.
 type Finding struct {
-	Value  string `json:"value"`
-	Source string `json:"source"`
+	Value     string `json:"value"`
+	Source    string `json:"source"`
+	RuleID    string `json:"rule_id,omitempty"`
+	StartLine int    `json:"start_line,omitempty"`
+	EndLine   int    `json:"end_line,omitempty"`
+	StartCol  int    `json:"start_column,omitempty"`
+	EndCol    int    `json:"end_column,omitempty"`
+	Snippet   string `json:"snippet,omitempty"`
 }
 
 // ScanResult is the internal per-target extraction result.
@@ -90,15 +96,21 @@ type CategoryMap struct {
 
 // FindingItem is a single finding in the JSON report.
 type FindingItem struct {
-	Value string `json:"value"`
-	File  string `json:"file"`
+	Value       string `json:"value"`
+	File        string `json:"file"`
+	RuleID      string `json:"rule_id,omitempty"`
+	StartLine   int    `json:"start_line,omitempty"`
+	EndLine     int    `json:"end_line,omitempty"`
+	StartColumn int    `json:"start_column,omitempty"`
+	EndColumn   int    `json:"end_column,omitempty"`
+	Snippet     string `json:"snippet,omitempty"`
 }
 
 // FileReport is per-file breakdown.
 type FileReport struct {
-	Path       string            `json:"path"`
-	Total      int               `json:"total"`
-	Categories map[string]int    `json:"by_category"`
+	Path       string              `json:"path"`
+	Total      int                 `json:"total"`
+	Categories map[string]int      `json:"by_category"`
 	Findings   map[string][]string `json:"findings,omitempty"`
 }
 
@@ -107,7 +119,7 @@ func NewReport(version string, results []*ScanResult) *Report {
 	now := time.Now().UTC().Format(time.RFC3339)
 	report := &Report{
 		Meta: ReportMeta{
-			Tool:      "findsomething",
+			Tool:      "zsecfind",
 			Version:   version,
 			ScannedAt: now,
 		},
@@ -159,7 +171,7 @@ func NewReport(version string, results []*ScanResult) *Report {
 			values := make([]string, len(findings))
 			for i, f := range findings {
 				values[i] = f.Value
-				item := FindingItem{Value: f.Value, File: f.Source}
+				item := findingToItem(f)
 				global[ck.key] = appendUniqueFinding(global[ck.key], item)
 			}
 			fileReport.Findings[ck.key] = values
@@ -196,9 +208,22 @@ func NewReport(version string, results []*ScanResult) *Report {
 	return report
 }
 
+func findingToItem(f Finding) FindingItem {
+	return FindingItem{
+		Value:       f.Value,
+		File:        f.Source,
+		RuleID:      f.RuleID,
+		StartLine:   f.StartLine,
+		EndLine:     f.EndLine,
+		StartColumn: f.StartCol,
+		EndColumn:   f.EndCol,
+		Snippet:     f.Snippet,
+	}
+}
+
 func appendUniqueFinding(items []FindingItem, item FindingItem) []FindingItem {
 	for _, existing := range items {
-		if existing.Value == item.Value && existing.File == item.File {
+		if existing.Value == item.Value && existing.File == item.File && existing.StartLine == item.StartLine {
 			return items
 		}
 	}

@@ -1,29 +1,26 @@
-.PHONY: build build-linux-windows build-all extract-patterns test clean
+.PHONY: build build-linux-windows build-all test clean
 
-BINARY=findsomething
+BINARY=zsecfind
 VERSION=1.0.0
 
-build: extract-patterns
-	go build -ldflags "-s -w" -o $(BINARY) ./cmd/findsomething
+build:
+	go build -ldflags "-s -w" -o $(BINARY) .
 
-# Linux + Windows (most common for DevSecOps)
-build-linux-windows: extract-patterns
+build-linux-windows:
 	mkdir -p dist
-	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-linux-amd64 ./cmd/findsomething
-	GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-windows-amd64.exe ./cmd/findsomething
+	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-linux-amd64 .
+	GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-windows-amd64.exe .
 
-build-all: extract-patterns
-	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-linux-amd64 ./cmd/findsomething
-	GOOS=linux GOARCH=arm64 go build -ldflags "-s -w" -o dist/$(BINARY)-linux-arm64 ./cmd/findsomething
-	GOOS=darwin GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-darwin-amd64 ./cmd/findsomething
-	GOOS=darwin GOARCH=arm64 go build -ldflags "-s -w" -o dist/$(BINARY)-darwin-arm64 ./cmd/findsomething
-	GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-windows-amd64.exe ./cmd/findsomething
-
-extract-patterns:
-	go run ./scripts/extract_patterns
+build-all:
+	mkdir -p dist
+	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-linux-amd64 .
+	GOOS=linux GOARCH=arm64 go build -ldflags "-s -w" -o dist/$(BINARY)-linux-arm64 .
+	GOOS=darwin GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-darwin-amd64 .
+	GOOS=darwin GOARCH=arm64 go build -ldflags "-s -w" -o dist/$(BINARY)-darwin-arm64 .
+	GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o dist/$(BINARY)-windows-amd64.exe .
 
 test:
-	go test ./...
+	go test ./internal/... ./patterns/... ./cmd/...
 
 clean:
 	rm -f $(BINARY) $(BINARY).exe

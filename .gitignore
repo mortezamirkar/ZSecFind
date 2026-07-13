@@ -1,6 +1,6 @@
-# Binaries (root only — do not match cmd/findsomething/)
-/findsomething
-/findsomething.exe
+# Binaries (root only — do not match cmd/*/)
+/zsecfind
+/zsecfind.exe
 # Build output (use GitHub Releases for binaries)
 /dist/
 
