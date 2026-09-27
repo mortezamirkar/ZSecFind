@@ -88,6 +88,8 @@ func Run() int {
 	hasWork := false
 	cats := categoryAllowlist(onlySecrets, categories)
 	scanOpts := scanner.ScanOptions{Workers: workers, Categories: cats}
+	crawlOpts.Categories = cats
+
 
 	if urls == "" && files == "" && dir == "" && len(positional) == 0 {
 		if stat, _ := os.Stdin.Stat(); (stat.Mode() & os.ModeCharDevice) == 0 {
